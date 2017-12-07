@@ -30,12 +30,14 @@ public class Driver
     }
 
     //add an edge from user
-    public static int addEdge(hamilton<String> ParisSightseeing, int edgesCounter)
+    public static int addEdge(hamilton<String> ParisSightseeing)
     {
+        int edgesCounter = 0;
+
         Scanner scn = new Scanner(System.in);
 
-        while(scn.hasNext())
-        {
+        //while(scn.hasNextLine())
+        //{
 
             double cost = 0.0;
             try
@@ -55,7 +57,7 @@ public class Driver
             ParisSightseeing.insert(first, second, cost);
             edgesCounter ++;
             System.out.println("This edge has been added to the graph\n");
-        }
+        //}
 
 
         return edgesCounter;
@@ -63,8 +65,10 @@ public class Driver
     }
 
     // add edges from file
-    public static int allocateFile (hamilton<String> ParisSightseeing, int edgeCounter)
+    public static int allocateFile (hamilton<String> ParisSightseeing)
     {
+        int edgeCounter = 0;
+
         Scanner scanner = openInputFile();
         if(scanner == null)
             return 0;
@@ -85,7 +89,7 @@ public class Driver
         }
 
         scanner.close();
-
+        System.out.println("\n" + edgeCounter + " edges have been added to graph\n");
         return edgeCounter;
     }
     public static boolean removeEdge(hamilton<String> ParisSightseeing,
@@ -136,6 +140,7 @@ public class Driver
         return false;
     }
 
+    // Valeska Victoria wrote this
     public static void undoRemoves(hamilton<String> ParisSightseeing,
                                    LinkedStack<Pair<Vertex<String>, Pair<Vertex<String>, Double>>> removedEdges)
     {
@@ -156,7 +161,7 @@ public class Driver
 
         System.out.println("Type your START POINT");
         Scanner strScanner = new Scanner(System.in);
-        startElement = strScanner.nextLine();
+        startElement = strScanner.nextLine().trim();
 
         while(!askFlag)
         {
@@ -199,6 +204,49 @@ public class Driver
 
         // ask user if want to save to solution to text
         writeGraphToTextFile(ParisSightseeing);
+    }
+
+    public static void writeOriginalGraphToTextFile(hamilton<String> ParisSightseeing)
+    {
+        boolean askFlag = false;
+        Scanner scanner = new Scanner(System.in);
+
+        while(!askFlag)
+        {
+            System.out.println("Save the graph to a text file?");
+            System.out.println("Type Y for Yes or N for No (case insensitive)");
+
+            String askResult = scanner.next();
+
+            if(askResult.compareToIgnoreCase("Y") == 0)
+            {
+                System.out.print("Enter the filename: ");
+                File file= new File(userScanner.nextLine());
+                PrintWriter wrt;
+
+                try{
+                    wrt = new PrintWriter(file);
+                }// end try
+                catch(FileNotFoundException fe){
+                    System.out.println("Can't open file, please try again\n");
+                    writeOriginalGraphToTextFile(ParisSightseeing);
+                    return;
+                } // end catch
+
+                System.out.println("graph was written to file\n");
+                ParisSightseeing.writeGraph(wrt);
+                askFlag = true;
+            }
+            else if(askResult.compareToIgnoreCase("N") == 0)
+            {
+                System.out.println("graph will not be written to the file\n");
+                askFlag = true;
+            }
+            else
+            {
+                System.out.println("Invalid choice, please type again\n");
+            }
+        }
     }
 
     public static void writeGraphToTextFile(hamilton<String> ParisSightseeing)
@@ -264,8 +312,9 @@ public class Driver
             System.out.println("    4. Undo the last Remove");
             System.out.println("    5. Display the Graph");
             System.out.println("    6. Solve the Problem");
-            System.out.println("    7. Quit this Graph");
-            System.out.println("Type 1,2,3,4,5,6 or 7 for your choice");
+            System.out.println("    7. Write this Graph to a file");
+            System.out.println("    8. Quit this Graph");
+            System.out.println("Type 1,2,3,4,5,6,7, or 8 for your choice");
 
             int askResult = choiceScanner.nextInt();
 
@@ -273,8 +322,7 @@ public class Driver
             {
                 case 1:// add from file
                 {
-                    edgeCounter = allocateFile(ParisSightseeing,edgeCounter);
-                    System.out.println("\n" + edgeCounter + " edges have been added to graph\n");
+                    edgeCounter +=  allocateFile(ParisSightseeing);
                     graphFlag = true;
                     break;
                 }
@@ -283,7 +331,7 @@ public class Driver
                     // prompt
                     System.out.println("Enter the START POINT, END POINT, and their DISTANCE");
 
-                    edgeCounter = addEdge(ParisSightseeing, edgeCounter);
+                    edgeCounter += addEdge(ParisSightseeing);
                     graphFlag = true;
                     break;
                 }
@@ -332,9 +380,16 @@ public class Driver
                 case 6:
                 {
                     doHamiltonianCycle(ParisSightseeing);
+                    break;
                 }
-                case 7: // quit
+                case 7: // write graph to file
                 {
+                    writeOriginalGraphToTextFile(ParisSightseeing);
+                    break;
+                }
+                case 8: // quit
+                {
+                    //System.exit(0);
                     menuFlag = true;
                     break;
                 }
@@ -362,7 +417,7 @@ public class Driver
             menuController(ParisSightseeing1,removedEdges);
 
             System.out.println("Do you want to change to another graph or exit the program");
-            System.out.println("Type Y for ANOTHER GRAPH, otherwise EXIT THE PROGRAM");
+            System.out.println("Type Y for ANOTHER GRAPH or press any other key to exit");
 
             String askResult = choiceScanner.next();
 

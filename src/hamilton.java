@@ -1,3 +1,10 @@
+/*
+
+Written entirely by Valeska Victoria, both classes
+
+ */
+
+
 import java.io.PrintWriter;
 import java.util.*;
 
@@ -20,8 +27,6 @@ public class hamilton<E> extends Graph<E> {
             Vertex<E> tmp = itr.next().getValue().first;
 
             if(tmp.equals(vrt)) {
-                System.out.println("This should be true");
-                System.out.println("contains:" + vrt.data.toString() + ":" + tmp.data.toString());
                 return true;
             }
 
@@ -31,6 +36,10 @@ public class hamilton<E> extends Graph<E> {
     }
 
     public void writeSolution(PrintWriter wrt) {
+
+        if(wrt == null) {
+            return;
+        }
 
         StringBuilder strB = new StringBuilder();
 
@@ -80,9 +89,6 @@ public class hamilton<E> extends Graph<E> {
 
         vArray.add(startVertex);
 
-        System.out.println("first:" + startVertex.data.toString());
-        System.out.println("vNum:" + vNum);
-
         if(!solution()) {
             System.out.println("Solution does not exist");
         }
@@ -117,15 +123,12 @@ public class hamilton<E> extends Graph<E> {
 
             Vertex<E> cur = itr.next().getValue();
 
-            System.out.println("second:" + cur.data.toString());
-
             int pos = vArray.size() - 1;
             boolean flag = contains(cur, vArray.get(pos).adjList) && !vArray.contains(cur);
-            System.out.println("flag:" + contains(cur, vArray.get(pos).adjList) + ":" + !vArray.contains(cur) + ":" + flag);
             if(flag) {
-                System.out.println("Entered!");
-                cur.visit();
+
                 vArray.add(cur);
+                vArray.get(vArray.size() - 1).visit();
 
                 if(solution()) {
                     return true;
@@ -179,6 +182,7 @@ class Visit<E> implements Visitor<E> {
 
             if(tmp.getValue().data.equals(obj)) {
                 tmp.getValue().visit();
+                System.out.println(obj.toString());
                 break;
             }
 

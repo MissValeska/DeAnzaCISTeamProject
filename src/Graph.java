@@ -243,7 +243,7 @@ public class Graph<E>
 
        startVertex.visit();
        visitor.visit(startVertex.data);
-       System.out.print(startVertex.data.toString() + " ");
+       System.out.print(" ");
 
        Iterator<Entry<E, Pair<Vertex<E>, Double>>> itr = startVertex.iterator();
 
@@ -266,6 +266,8 @@ public class Graph<E>
    //         adjacency list TO A TEXT FILE (SUGGEST TO PASS AN
    //        ALREADY OPEN PrintWriter TO THIS) !
 
+    // Valeska Victoria wrote this
+
     public boolean writeGraph(PrintWriter wrt) {
 
        if(wrt == null) {
@@ -274,23 +276,17 @@ public class Graph<E>
 
         Iterator<Entry<E, Vertex<E>>> itr = vertexSet.entrySet().iterator();
 
-        while(itr.hasNext()) {
-
-            Entry<E, Vertex<E>> tmp = itr.next();
-
-            Vertex<E> v = tmp.getValue();
-
-            E data = tmp.getKey();
-
-            wrt.append(data.toString() + "\n");
-
-        }
+       StringBuilder strB = new StringBuilder();
 
        while(itr.hasNext()) {
 
            Entry<E, Vertex<E>> tmp = itr.next();
 
            Vertex<E> v = tmp.getValue();
+
+           E data1 = tmp.getKey();
+
+           strB.append(data1.toString() + " : ");
 
            Iterator<Entry<E, Pair<Vertex<E>, Double>>> itr2 = v.iterator();
 
@@ -301,17 +297,15 @@ public class Graph<E>
 
                Pair<Vertex<E>, Double> VAndCost = tmpData.getValue();
 
-               StringBuilder strB = new StringBuilder();
-
-               strB.append(String.valueOf(VAndCost.second));
-               strB.append(" " + data.toString());
-               strB.append(" | " + VAndCost.first.data.toString() + "\n");
-               wrt.write(strB.toString());
+               strB.append(VAndCost.first.data.toString() + ", ");
 
            }
 
+           strB.append("\n");
+
 
        }
+        wrt.write(strB.toString());
         wrt.close();
         return true;
     }

@@ -1,28 +1,14 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.io.PrintWriter;
+import java.util.*;
 
 public class hamilton<E> extends Graph<E> {
 
-    private ArrayList<Vertex<E>> vArray = new ArrayList<>();
-    private int vNum = vertexSet.entrySet().size();
+    private ArrayList<Vertex<E>> vArray;
+    private int vNum;
 
     public hamilton() {
-
-    }
-
-    public void solutionHelper(Vertex<E> startVertex) {
-
-        Iterator<Map.Entry<E, Pair<Vertex<E>, Double>>> itr = startVertex.iterator();
-
-
-        while(itr.hasNext()) {
-
-            Vertex<E> tmp = itr.next().getValue().first;
-
-        }
-
+        vArray = new ArrayList<>();
+        vNum = vertexSet.entrySet().size();
     }
 
     public boolean contains(Vertex<E> vrt, HashMap<E, Pair<Vertex<E>, Double>> adjList) {
@@ -31,7 +17,11 @@ public class hamilton<E> extends Graph<E> {
 
         while(itr.hasNext()) {
 
-            if(itr.next().getValue().first.equals(vrt)) {
+            Vertex<E> tmp = itr.next().getValue().first;
+
+            if(tmp.equals(vrt)) {
+                System.out.println("This should be true");
+                System.out.println("contains:" + vrt.data.toString() + ":" + tmp.data.toString());
                 return true;
             }
 
@@ -40,17 +30,47 @@ public class hamilton<E> extends Graph<E> {
 
     }
 
-    public void printSolution() {
+    public void writeSolution(PrintWriter wrt) {
 
-        System.out.println("A solution exists, here is the path");
+        StringBuilder strB = new StringBuilder();
+
+        for (Vertex<E> tmp: vArray) {
+            Iterator<Map.Entry<E, Pair<Vertex<E>, Double>>> itr = tmp.iterator();
+            strB.append(tmp.data.toString() + " : ");
+            boolean first = true;
+            while(itr.hasNext()) {
+
+                String str = itr.next().getValue().first.data.toString();
+
+                if(!first) {
+                    strB.append(", " + str);
+                }
+                else {
+                    strB.append(str);
+                }
+                first = false;
+
+            }
+            strB.append("\n");
+            //strB.append(" " + tmp.data.toString() + " ");
+        }
+
+        wrt.print(strB.toString());
+        wrt.close();
+    }
+
+    private void printSolution() {
+
+        System.out.println("A solution exists, here is the path:\n");
 
         for (Vertex<E> tmp: vArray) {
             System.out.print(" " + tmp.data.toString() + " ");
         }
+        System.out.println();
 
     }
 
-    public void solHelp() {
+    public void solve() {
 
         Iterator<Map.Entry<E, Vertex<E>>> itr = vertexSet.entrySet().iterator();
 
@@ -59,6 +79,9 @@ public class hamilton<E> extends Graph<E> {
         startVertex.visit();
 
         vArray.add(startVertex);
+
+        System.out.println("first:" + startVertex.data.toString());
+        System.out.println("vNum:" + vNum);
 
         if(!solution()) {
             System.out.println("Solution does not exist");
@@ -69,45 +92,24 @@ public class hamilton<E> extends Graph<E> {
 
     }
 
-    public boolean checkPath() {
 
-        boolean flag = false;
-
-        int index = 0;
-
-        for (Vertex<E> tmp : vArray) {
-
-            if(contains(vArray.get(++index), tmp.adjList)) {
-                flag = true;
-            }
-            else {
-                flag = false;
-                return false;
-            }
-
-        }
-
-        return flag;
-
-
+    public Vertex<E> getVertex(E data) {
+        return vertexSet.get(data);
     }
 
+    public Iterator<Map.Entry<E, Vertex<E>>> iterator() {
+        return vertexSet.entrySet().iterator();
+    }
 
-    public boolean solution() {
+    private boolean solution() {
 
         //Object[] arr = vertexSet.entrySet().toArray();
         Iterator<Map.Entry<E, Vertex<E>>> itr = vertexSet.entrySet().iterator();
         itr.next();
 
-        if((vArray.size() - 1) == vNum) {
+        if(vArray.size() == vNum) {
 
-            // check if there is an edge from the last included vertex to the first one
-            if(checkPath()) {
-                return true;
-            }
-            else {
-                return false;
-            }
+            return true;
 
         }
 
@@ -115,7 +117,13 @@ public class hamilton<E> extends Graph<E> {
 
             Vertex<E> cur = itr.next().getValue();
 
-            if(contains(cur, vArray.get(vArray.size()-2).adjList) && !vArray.contains(cur)) {
+            System.out.println("second:" + cur.data.toString());
+
+            int pos = vArray.size() - 1;
+            boolean flag = contains(cur, vArray.get(pos).adjList) && !vArray.contains(cur);
+            System.out.println("flag:" + contains(cur, vArray.get(pos).adjList) + ":" + !vArray.contains(cur) + ":" + flag);
+            if(flag) {
+                System.out.println("Entered!");
                 cur.visit();
                 vArray.add(cur);
 
@@ -137,27 +145,44 @@ public class hamilton<E> extends Graph<E> {
     }
 
     public void displayAdj() {
-        Iterator<Map.Entry<E, Vertex<E>>> itr = vertexSet.entrySet().iterator();
-        while (itr.hasNext()) {
-            Map.Entry<E, Vertex<E>> tmp1 = itr.next();
-            Iterator<Map.Entry<E, Pair<Vertex<E>, Double>>> tmp = tmp1.getValue().iterator();
-            System.out.println("[" + tmp1.getKey() + "]");
-            while(tmp.hasNext()) {
-                Map.Entry<E, Pair<Vertex<E>, Double>> tmp3 = tmp.next();
-                System.out.println(tmp3.getKey() + ":" + tmp3.getValue().first.data + ":" + tmp3.getValue().second);
-            }
-        }
-
-
+        showAdjTable();
     }
 
    public void insert(E source, E dest, double cost) {
-       vArray.add(new Vertex<>(source));
-       vArray.add(new Vertex<>(dest));
 
         addEdge(source, dest, cost);
+        vNum = vertexSet.entrySet().size();
 
    }
 
 
+}
+
+
+class Visit<E> implements Visitor<E> {
+
+    hamilton<E> ham;
+
+    public Visit (hamilton<E> ham) {
+        this.ham = ham;
+    }
+
+    // visits the first apperance of the object in the vertex set.
+
+    @Override
+    public void visit(E obj) {
+
+        Iterator<Map.Entry<E, Vertex<E>>> itr = ham.iterator();
+
+        while(itr.hasNext()) {
+            Map.Entry<E, Vertex<E>> tmp = itr.next();
+
+            if(tmp.getValue().data.equals(obj)) {
+                tmp.getValue().visit();
+                break;
+            }
+
+        }
+
+    }
 }

@@ -1,0 +1,90 @@
+1.7 The Park Hyatt Paris Vendome | National Assembly 
+2.1 The Park Hyatt Paris Vendome | Grand Palais
+2.8 The Park Hyatt Paris Vendome | Musée Rodin
+4.1 The Park Hyatt Paris Vendome | Tour Montparnasse
+2.9 The Park Hyatt Paris Vendome | Latin Quarter
+3.2 The Park Hyatt Paris Vendome |Les Invalides
+3.5 The Park Hyatt Paris Vendome |Musée Picasso
+2.8 The Park Hyatt Paris Vendome |Palais de Tokyo
+3.7 The Park Hyatt Paris Vendome |Le Jules Verne
+1.7 National Assembly | The Park Hyatt Paris Vendome
+0.75 National Assembly | Grand Palais
+0.75 National Assembly | Musée Rodin
+2.7 National Assembly | Tour Montparnasse
+2.4 National Assembly | Latin Quarter
+1.0 National Assembly | Les Invalides
+5.4 National Assembly | Musée Picasso
+1.9 National Assembly | Palais de Tokyo
+2.1 National Assembly | Le Jules Verne
+2.1 Grand Palais | The Park Hyatt Paris Vendome
+0.75 Grand Palais | National Assembly
+1.3 Grand Palais | Musée Rodin
+3.3 Grand Palais | Tour Montparnasse
+3.0 Grand Palais | Latin Quarter
+1.7 Grand Palais | Les Invalides
+4.4 Grand Palais | Musée Picasso
+1.5 Grand Palais | Palais de Tokyo
+2.2 Grand Palais | Le Jules Verne
+2.8 Musée Rodin | The Park Hyatt Paris Vendome
+0.75 Musée Rodin | National Assembly
+1.3 Musée Rodin | Grand Palais
+2.0 Musée Rodin | Tour Montparnasse
+3.1 Musée Rodin | Latin Quarter
+0.45 Musée Rodin | Les Invalides
+5.5 Musée Rodin | Musée Picasso
+2.5 Musée Rodin | Palais de Tokyo
+2.6 Musée Rodin | Le Jules Verne
+4.1 Tour Montparnasse | The Park Hyatt Paris Vendome
+2.75 Tour Montparnasse | National Assembly
+3.3 Tour Montparnasse | Grand Palais
+2.0 Tour Montparnasse | Musée Rodin
+2.8 Tour Montparnasse | Latin Quarter
+1.9 Tour Montparnasse | Les Invalides
+5.8 Tour Montparnasse | Musée Picasso
+3.9 Tour Montparnasse | Palais de Tokyo
+3.8 Tour Montparnasse | Le Jules Verne
+2.9 Latin Quarter | The Park Hyatt Paris Vendome
+2.4 Latin Quarter | National Assembly
+3.0 Latin Quarter | Grand Palais
+3.1 Latin Quarter | Musée Rodin
+2.8 Latin Quarter | Tour Montparnasse
+2.6 Latin Quarter | Les Invalides
+2.5 Latin Quarter | Musée Picasso
+4.2 Latin Quarter | Palais de Tokyo
+4.4 Latin Quarter | Le Jules Verne
+3.2 Les Invalides | The Park Hyatt Paris Vendome
+1.0 Les Invalides | National Assembly
+1.7 Les Invalides | Grand Palais
+0.45 Les Invalides | Musée Rodin
+1.9 Les Invalides | Tour Montparnasse
+2.6 Les Invalides | Latin Quarter
+5.7 Les Invalides | Musée Picasso
+2.7 Les Invalides | Palais de Tokyo
+1.6 Les Invalides | Le Jules Verne
+3.5 Musée Picasso | The Park Hyatt Paris Vendome
+5.4 Musée Picasso | National Assembly
+4.4 Musée Picasso | Grand Palais
+5.5 Musée Picasso | Musée Rodin 
+5.8 Musée Picasso | Tour Montparnasse
+2.5 Musée Picasso | Latin Quarter
+5.7 Musée Picasso | Les Invalides
+5.6 Musée Picasso | Palais de Tokyo
+6.3 Musée Picasso | Le Jules Verne
+2.8 Palais de Tokyo | The Park Hyatt Paris Vendome
+1.9 Palais de Tokyo | National Assembly
+1.5 Palais de Tokyo | Grand Palais
+2.5 Palais de Tokyo | Musée Rodin
+3.9 Palais de Tokyo | Tour Montparnasse
+4.2 Palais de Tokyo | Latin Quarter
+2.7 Palais de Tokyo | Les Invalides
+5.6 Palais de Tokyo | Musée Picasso
+1.6 Palais de Tokyo | Le Jules Verne
+3.7 Le Jules Verne | The Park Hyatt Paris Vendome
+2.1 Le Jules Verne | National Assembly
+2.2 Le Jules Verne | Grand Palais
+2.6 Le Jules Verne | Musée Rodin
+3.8 Le Jules Verne | Tour Montparnasse
+4.4 Le Jules Verne | Latin Quarter
+1.6 Le Jules Verne | Les Invalides
+6.3 Le Jules Verne | Musée Picasso
+1.6 Le Jules Verne | Palais de Tokyo

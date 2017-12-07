@@ -1,0 +1,90 @@
+3.6 Eiffel Tower | The Louvre
+4.5 Eiffel Tower | Notre-Dame de Paris
+2.9 Eiffel Tower | Tuileries Garden
+6.7 Eiffel Tower | Sacré-Cœur
+1.7 Eiffel Tower | Champs-Élysées
+51.7 Eiffel Tower | Disneyland Paris
+0.45 Eiffel Tower | Champ de Mars
+3.3 Eiffel Tower | Le Meurice (Paris)
+2.9 Eiffel Tower | Le Royal Monceau
+3.6 The Louvre | Eiffel Tower
+1.7 The Louvre | Notre-Dame de Paris
+1.1 The Louvre | Tuileries Garden
+4.5 The Louvre | Sacré-Cœur
+3.6 The Louvre | Champs-Élysées
+44.0 The Louvre | Disneyland Paris
+4.7 The Louvre | Champ de Mars
+1.0 The Louvre | Le Meurice (Paris)
+3.9 The Louvre | Le Royal Monceau
+4.5 Notre-Dame de Paris | Eiffel Tower
+1.7 Notre-Dame de Paris | The Louvre
+2.1 Notre-Dame de Paris | Tuileries Garden
+6.1 Notre-Dame de Paris | Sacré-Cœur
+4.4 Notre-Dame de Paris | Champs-Élysées
+43.5 Notre-Dame de Paris | Disneyland Paris
+4.5 Notre-Dame de Paris | Champ de Mars
+2.5 Notre-Dame de Paris | Le Meurice (Paris)
+5.4 Notre-Dame de Paris | Le Royal Monceau
+2.9 Tuileries Garden | Eiffel Tower
+1.1 Tuileries Garden | The Louvre
+2.1 Tuileries Garden | Notre-Dame de Paris
+4.6 Tuileries Garden | Sacré-Cœur
+1.8 Tuileries Garden | Champs-Élysées
+44.4 Tuileries Garden | Disneyland Paris
+2.9 Tuileries Garden | Champ de Mars
+0.071 Tuileries Garden | Le Meurice (Paris)
+2.7 Tuileries Garden | Le Royal Monceau
+6.7 Sacré-Cœur | Eiffel Tower
+4.5 Sacré-Cœur | The Louvre
+6.1 Sacré-Cœur | Notre-Dame de Paris
+4.6 Sacré-Cœur | Tuileries Garden
+5.3 Sacré-Cœur | Champs-Élysées
+53.8 Sacré-Cœur | Disneyland Paris
+6.7 Sacré-Cœur | Champ de Mars
+4.1 Sacré-Cœur | Le Meurice (Paris)
+4.8 Sacré-Cœur | Le Royal Monceau
+1.7 Champs-Élysées | Eiffel Tower
+3.6 Champs-Élysées | The Louvre
+4.4 Champs-Élysées | Notre-Dame de Paris
+1.8 Champs-Élysées | Tuileries Garden
+5.3 Champs-Élysées | Sacré-Cœur
+56.1 Champs-Élysées | Disneyland Paris
+1.9 Champs-Élysées | Champ de Mars
+3.2 Champs-Élysées | Le Meurice (Paris)
+0.8 Champs-Élysées | Le Royal Monceau
+51.7 Disneyland Paris | Eiffel Tower
+44.0 Disneyland Paris | The Louvre
+43.5 Disneyland Paris | Notre-Dame de Paris
+44.4 Disneyland Paris | Tuileries Garden
+53.8 Disneyland Paris | Sacré-Cœur
+56.1 Disneyland Paris | Champs-Élysées
+51.7 Disneyland Paris | Champ de Mars
+44.7 Disneyland Paris | Le Meurice (Paris)
+55.8 Disneyland Paris | Le Royal Monceau
+0.45 Champ de Mars | Eiffel Tower
+4.7 Champ de Mars | The Louvre
+4.5 Champ de Mars | Notre-Dame de Paris
+2.9 Champ de Mars | Tuileries Garden
+6.7 Champ de Mars | Sacré-Cœur
+1.9 Champ de Mars | Champs-Élysées
+51.7 Champ de Mars | Disneyland Paris
+4.0 Champ de Mars | Le Meurice (Paris)
+2.3 Champ de Mars | Le Royal Monceau
+3.3 Le Meurice (Paris) | Eiffel Tower
+1.0 Le Meurice (Paris) | The Louvre
+2.5 Le Meurice (Paris) | Notre-Dame de Paris
+0.071 Le Meurice (Paris) | Tuileries Garden
+4.1 Le Meurice (Paris) | Sacré-Cœur
+3.2 Le Meurice (Paris) | Champs-Élysées
+44.7 Le Meurice (Paris) | Disneyland Paris
+3.0 Le Meurice (Paris) | Champ de Mars
+3.1 Le Meurice (Paris) | Le Royal Monceau
+2.9 Le Royal Monceau | Eiffel Tower
+3.9 Le Royal Monceau | The Louvre
+5.4 Le Royal Monceau | Notre-Dame de Paris
+2.7 Le Royal Monceau | Tuileries Garden
+4.8 Le Royal Monceau | Sacré-Cœur
+0.8 Le Royal Monceau | Champs-Élysées
+55.8 Le Royal Monceau | Disneyland Paris
+2.3 Le Royal Monceau | Champ de Mars
+3.1 Le Royal Monceau | Le Meurice (Paris)

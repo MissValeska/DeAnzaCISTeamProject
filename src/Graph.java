@@ -239,6 +239,23 @@ public class Graph<E>
    public void depthFirstTraversalHelper(Vertex<E> startVertex, Visitor<E> visitor)
    {
         // YOU COMPLETE THIS (USE THE RECURSIVE ALGORITHM GIVEN FOR LESSON 11 EXERCISE)
+
+       startVertex.visit();
+       visitor.visit(startVertex.data);
+
+       Iterator<Entry<E, Pair<Vertex<E>, Double>>> itr = startVertex.iterator();
+
+       while(itr.hasNext()) {
+
+           Vertex<E> tmp = itr.next().getValue().first;
+            if(!tmp.isVisited()) {
+                depthFirstTraversalHelper(tmp, visitor);
+            }
+
+       }
+
+
+
    }
 
 

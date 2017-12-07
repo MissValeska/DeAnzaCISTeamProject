@@ -69,6 +69,30 @@ public class hamilton<E> extends Graph<E> {
 
     }
 
+    public boolean checkPath() {
+
+        boolean flag = false;
+
+        int index = 0;
+
+        for (Vertex<E> tmp : vArray) {
+
+            if(contains(vArray.get(++index), tmp.adjList)) {
+                flag = true;
+            }
+            else {
+                flag = false;
+                return false;
+            }
+
+        }
+
+        return flag;
+
+
+    }
+
+
     public boolean solution() {
 
         //Object[] arr = vertexSet.entrySet().toArray();
@@ -78,8 +102,7 @@ public class hamilton<E> extends Graph<E> {
         if((vArray.size() - 1) == vNum) {
 
             // check if there is an edge from the last included vertex to the first one
-            // potentially unnecessary
-            if(true) {
+            if(checkPath()) {
                 return true;
             }
             else {
@@ -100,8 +123,10 @@ public class hamilton<E> extends Graph<E> {
                     return true;
                 }
 
-                vArray.get(vArray.size()-1).unvisit();
-                vArray.remove(vArray.size()-1);
+                else {
+                    vArray.get(vArray.size() - 1).unvisit();
+                    vArray.remove(vArray.size() - 1);
+                }
 
             }
 

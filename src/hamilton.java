@@ -12,10 +12,34 @@ public class hamilton<E> extends Graph<E> {
 
     private ArrayList<Vertex<E>> vArray;
     private int vNum;
+    public LinkedStack<Pair<E, Pair<E, Double>>> removedEdges;
 
     public hamilton() {
         vArray = new ArrayList<>();
         vNum = vertexSet.entrySet().size();
+        removedEdges = new LinkedStack<>();
+        // Fix undo everywhere
+    }
+
+    public boolean isEmpty() {
+        return vertexSet.isEmpty();
+    }
+
+    public boolean removeEdge(E src, E end) {
+
+        Vertex<E> startVertex = vertexSet.get(src);
+        double cost = startVertex.adjList.get(end).second;
+        removedEdges.push(new Pair(src, new Pair(end, cost)));
+        return remove(src, end);
+
+    }
+
+    public void undoLastRemove()
+    {
+        // undo the last remove
+        Pair<E, Pair<E, Double>> temp = removedEdges.pop();
+
+        insert(temp.first, temp.second.first, temp.second.second);
     }
 
     public boolean contains(Vertex<E> vrt, HashMap<E, Pair<Vertex<E>, Double>> adjList) {
@@ -170,7 +194,7 @@ class Visit<E> implements Visitor<E> {
         this.ham = ham;
     }
 
-    // visits the first apperance of the object in the vertex set.
+    // visits the first appearance of the object in the vertex set.
 
     @Override
     public void visit(E obj) {

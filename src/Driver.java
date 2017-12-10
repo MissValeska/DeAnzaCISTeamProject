@@ -39,6 +39,11 @@ public class Driver
         //while(scn.hasNextLine())
         //{
 
+            System.out.println("Please enter the start vertex name to be added:");
+            String first = scn.nextLine().trim();
+            System.out.println("Please enter the destination vertex name to be added:");
+            String second = scn.nextLine().trim();
+
             double cost = 0.0;
             try
             {
@@ -49,17 +54,13 @@ public class Driver
                 System.out.println("Please type a NUMBER for distance");
             }
 
-            String grr = scn.nextLine().trim();
-            String[] split = grr.split("\\|");
-            String first = split[0].trim();
-            String second = split[1].trim();
-
             ParisSightseeing.insert(first, second, cost);
             edgesCounter ++;
             System.out.println("This edge has been added to the graph\n");
         //}
 
 
+        scn.close();
         return edgesCounter;
 
     }
@@ -92,65 +93,24 @@ public class Driver
         System.out.println("\n" + edgeCounter + " edges have been added to graph\n");
         return edgeCounter;
     }
-    public static boolean removeEdge(hamilton<String> ParisSightseeing,
-                                     LinkedStack<Pair<Vertex<String>, Pair<Vertex<String>, Double>>> removedEdges)
+    public static boolean removeEdge(hamilton<String> ParisSightseeing)
     {
         Scanner userChoice = new Scanner(System.in);
 
-        String grr = userChoice.nextLine().trim();
-        String[] split = grr.split("\\|");
-        String src = split[0].trim();
-        String dest = split[1].trim();
+        System.out.println("Please enter the start vertex name to be deleted:");
+        String src = userChoice.nextLine().trim();
+        System.out.println("Please enter the destination vertex name to be deleted:");
+        String dest = userChoice.nextLine().trim();
 
-        Vertex<String> startVertex = ParisSightseeing.getVertex(src);
+        userChoice.close();
 
-        Iterator<Entry<String, Vertex<String>>> iter1 = ParisSightseeing.iterator();
-
-        Iterator<Entry<String, Pair<Vertex<String>, Double>>> iter2;
-        Entry<String, Pair<Vertex<String>, Double>> entry;
-        Pair<Vertex<String>, Double> pair;
-
-        while(iter1.hasNext())
-        {
-            Vertex<String> vertex = iter1.next().getValue();
-
-            iter2 = vertex.adjList.entrySet().iterator();
-
-            while(iter2.hasNext())
-            {
-                entry = iter2.next();
-                pair = entry.getValue();
-
-                if(vertex.data.equals(src) && pair.first.data.equals(dest))
-                {
-                    Vertex<String> firstSpot = new Vertex<>();
-                    Vertex<String> lastSpot = new Vertex<>();
-                    firstSpot.data = src;
-                    lastSpot.data = dest;
-
-                    Pair<Vertex<String>, Double> temp = new Pair<>(lastSpot, pair.second);
-                    removedEdges.push(new Pair<Vertex<String>, Pair<Vertex<String>, Double>>(firstSpot, temp));
-                    System.out.println("One edge has been removed from the graph\n");
-                    return ParisSightseeing.remove(src, dest);
-                    }
-            }
+        if(ParisSightseeing.removeEdge(src, dest)) {
+            return true;
         }
-
-        System.out.println("Such edge doesn't exist in the graph\n");
-        return false;
-    }
-
-    // Valeska Victoria wrote this
-    public static void undoRemoves(hamilton<String> ParisSightseeing,
-                                   LinkedStack<Pair<Vertex<String>, Pair<Vertex<String>, Double>>> removedEdges)
-    {
-        // undo the last remove
-        Pair<Vertex<String>, Pair<Vertex<String>, Double>> temp = removedEdges.pop();
-        String source = temp.first.getData();
-        String dest = temp.second.first.getData();
-        Double cost = temp.second.second;
-
-        ParisSightseeing.insert(source,dest,cost);
+        else {
+            System.out.println("The specified edge doesn't exist in the graph.\n");
+            return false;
+        }
     }
 
     public static void displayGraph(hamilton<String> ParisSightseeing)
@@ -190,9 +150,10 @@ public class Driver
                     askFlag = true;
                     break;
                 default:
-                    System.out.println("Invalid choice, please type again\n");
+                    System.out.println("Invalid choice, please try again\n");
             }
         }
+        strScanner.close();
     }
 
 
@@ -213,7 +174,7 @@ public class Driver
 
         while(!askFlag)
         {
-            System.out.println("Save the graph to a text file?");
+            System.out.println("Do you want to save the graph to a text file?");
             System.out.println("Type Y for Yes or N for No (case insensitive)");
 
             String askResult = scanner.next();
@@ -233,20 +194,21 @@ public class Driver
                     return;
                 } // end catch
 
-                System.out.println("graph was written to file\n");
+                System.out.println("The graph was written to file\n");
                 ParisSightseeing.writeGraph(wrt);
                 askFlag = true;
             }
             else if(askResult.compareToIgnoreCase("N") == 0)
             {
-                System.out.println("graph will not be written to the file\n");
+                System.out.println("The graph will not be written to the file\n");
                 askFlag = true;
             }
             else
             {
-                System.out.println("Invalid choice, please type again\n");
+                System.out.println("Invalid choice, please try again\n");
             }
         }
+        scanner.close();
     }
 
     public static void writeGraphToTextFile(hamilton<String> ParisSightseeing)
@@ -276,7 +238,7 @@ public class Driver
                     return;
                 } // end catch
 
-                System.out.println("Solution was written to file\n");
+                System.out.println("The solution was written to file\n");
                 ParisSightseeing.writeSolution(wrt);
                 askFlag = true;
             }
@@ -290,10 +252,10 @@ public class Driver
                 System.out.println("Invalid choice, please type again\n");
             }
         }
+        scanner.close();
     }
 
-    public static void menuController(hamilton<String> ParisSightseeing,
-                                      LinkedStack<Pair<Vertex<String>, Pair<Vertex<String>, Double>>> removedEdges)
+    public static void menuController(hamilton<String> ParisSightseeing)
     {
         boolean menuFlag = false;
         boolean graphFlag = false;
@@ -301,11 +263,11 @@ public class Driver
         int removeCounter = 0;
         Scanner choiceScanner = new Scanner(System.in);
 
-        System.out.println("Good Afternoon, Welcome to Your High-end Paris Sightseeing Customization Service");
+        System.out.println("Welcome to the Paris Sightseeing Service");
 
         while(!menuFlag)
         {
-            System.out.println("---Your private options are listed below---");
+            System.out.println("---Your options are listed below---");
             System.out.println("    1. Allocate Edges from files");
             System.out.println("    2. Add an edge");
             System.out.println("    3. Remove one Edge");
@@ -313,8 +275,9 @@ public class Driver
             System.out.println("    5. Display the Graph");
             System.out.println("    6. Solve the Problem");
             System.out.println("    7. Write this Graph to a file");
-            System.out.println("    8. Quit this Graph");
-            System.out.println("Type 1,2,3,4,5,6,7, or 8 for your choice");
+            System.out.println("    8. Clear the current graph.");
+            System.out.println("    9. Quit this Graph");
+            System.out.println("Type 1, 2, 3, 4, 5, 6, 7, 8, or 9 for your choice");
 
             int askResult = choiceScanner.nextInt();
 
@@ -347,7 +310,7 @@ public class Driver
                         // prompt
                         System.out.println("Enter the START POINT and END POINT of the edge you want to remove");
 
-                        removeEdge(ParisSightseeing, removedEdges);
+                        removeEdge(ParisSightseeing);
                         removeCounter ++;
                         edgeCounter --;
                     }
@@ -356,24 +319,24 @@ public class Driver
                 case 4: // undo remove
                 {
                     // add happened once or remove happened once
-                    if(graphFlag && (removeCounter > 0))
+                    if(graphFlag && !ParisSightseeing.isEmpty())
                     {
-                        undoRemoves(ParisSightseeing, removedEdges);
+                        ParisSightseeing.undoLastRemove();
                         removeCounter -= 1;
-                        System.out.println("The last remove has been cancelled\n");
+                        System.out.println("The last removal has been undone.\n");
                     }
                     else
                     {
-                        System.out.println("No remove happened, undo rejected, please type again\n");
+                        System.out.println("Undo failed, no removal has occurred, please try adding an edge to the graph\n");
                     }
                     break;
                 }
                 case 5: //display
                 {
-                    if(edgeCounter > 0) {
+                    if(!ParisSightseeing.isEmpty()) {
                         displayGraph(ParisSightseeing);
                     } else {
-                        System.out.println("The graph is empty, please add some edges.");
+                        System.out.println("The graph is empty, please add an edge.");
                     }
                     break;
                 }
@@ -387,25 +350,28 @@ public class Driver
                     writeOriginalGraphToTextFile(ParisSightseeing);
                     break;
                 }
-                case 8: // quit
+                case 8: // Clear the current graph
                 {
-                    //System.exit(0);
+                    ParisSightseeing.clear();
+                    break;
+                }
+                case 9: // quit
+                {
                     menuFlag = true;
                     break;
                 }
                 default:
                 {
-                    System.out.println("Invalid choice, please type again \n");
+                    System.out.println("Invalid choice, please try again \n");
                 }
             }
         }
+        choiceScanner.close();
     }
 
     public static void main(String[] args)
     {
         hamilton<String> ParisSightseeing1;
-        LinkedStack<Pair<Vertex<String>, Pair<Vertex<String>, Double>>> removedEdges
-                                                               = new LinkedStack<>();
 
         boolean runFlag = false;
         Scanner choiceScanner = new Scanner(System.in);
@@ -414,7 +380,7 @@ public class Driver
         {
             ParisSightseeing1 = new hamilton<>();
 
-            menuController(ParisSightseeing1,removedEdges);
+            menuController(ParisSightseeing1);
 
             System.out.println("Do you want to change to another graph or exit the program");
             System.out.println("Type Y for ANOTHER GRAPH or press any other key to exit");
@@ -428,11 +394,11 @@ public class Driver
             }
             else
             {
+                System.out.println("\nThank you for using our program.\n");
                 System.out.println("\nProgram Ended\n");
-                System.out.println("Thank you for choosing our service. " +
-                                   "We are pleased to have the privilege to serve you.");
                 runFlag = true;
             }
         }
+        choiceScanner.close();
     }
 }
